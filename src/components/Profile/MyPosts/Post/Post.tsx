@@ -8,6 +8,7 @@ function Post() {
             post 1
             <div>
                 <span>Like</span>
+                <span>likeCount</span>
             </div>
         </div>
     )
