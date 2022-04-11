@@ -1,10 +1,16 @@
 import React from 'react';
 import classes from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
+import navBar from "../NavBar/NavBar";
+//
+// type ProfilePropsType = {
+//     images: string
+// }
 
 const Profile = () => {
     return (
-            <div className={classes.content}>
+        <nav>
+            <div>
                 <img
                     src='https://media.gettyimages.com/photos/leadership-concept-with-paper-airplanes-picture-id1132930101?s=612x612'/>
                 <div>
@@ -12,6 +18,7 @@ const Profile = () => {
                 </div>
                 <MyPosts/>
             </div>
+        </nav>
     )
 }
 

@@ -12,3 +12,8 @@
 
 
 }
+
+.appWrapperContent {
+    grid-area: c;
+    background-color: cadetblue;
+}
