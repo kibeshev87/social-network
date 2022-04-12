@@ -6,8 +6,8 @@ const NavBar = () => {
     return (
         <nav className={style.nav}>
 
-            <div className={`${style.item} ${style.active}`}>
-                <Link  to='/profile' > Profile </Link>
+            <div className={style.active}>
+                <Link to='/profile'> Profile </Link>
             </div>
 
             <div className={style.item}>
