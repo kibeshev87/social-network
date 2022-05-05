@@ -1,48 +1,52 @@
 import React from 'react';
 import style from './Dialogs.module.css'
-import {Link} from "react-router-dom";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./MessageItem/Message";
+import {v1} from "uuid";
 
-type DialogPropsType = {
-    name: string
+/*
+export type DialogsPropsType = {
     id: string
-}
-
-type MessagePropsType = {
+    name: string
     message: string
 }
+*/
 
-const DialogItem = (props: DialogPropsType) => {
-    return (
-        <nav className={`${style.dialog} ${style.active}`}>
-            <Link to={'/dialogs/' + props.id}>{props.name}</Link>
-        </nav>
-    )
-}
+export const Dialogs = () => {
 
-const Message = (props:MessagePropsType) => {
-    return (
-        <div className={style.message}>{props.message}</div>
-    )
-}
+/*
+    let dialogs = [
+        {id: v1(), name: 'Dmitry'},
+        {id: v1(), name: 'Yulia'},
+        {id: v1(), name: 'Aleksandr'},
+        {id: v1(), name: 'Evgeniy'},
+        {id: v1(), name: 'Nikolay'},
+        {id: v1(), name: 'Victor'}
+    ]
+*/
 
-const Dialogs = () => {
+    let dialogsElements = dialogs
+        .map(dialog => <DialogItem key={dialog.id}  id={dialog.id} name={dialog.name}/>)
+
+    let messages = [
+        {id: v1(), message: 'Hi'},
+        {id: v1(), message: 'How is your it-kamasutra?'},
+        {id: v1(), message: 'Yo-Yo'}
+    ]
+
+    let messagesElements = messages
+        .map(message => <Message key={message.id} id={message.id} message={message.message}/>)
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                <DialogItem id='1' name='Dmitry'/>
-                <DialogItem id='2' name='Yulia'/>
-                <DialogItem id='3' name='Aleksandr'/>
-                <DialogItem id='4' name='Evgeniy'/>
-                <DialogItem id='5' name='Nikolay'/>
-                <DialogItem id='6' name='Victor'/>
+                {dialogsElements}
             </div>
+
             <div className={style.messages}>
-                <Message message='Hi'/>
-                <Message message='How is your it-kamasutra?'/>
-                <Message message='Yo'/>
+                {messagesElements}
             </div>
         </div>
     )
 }
 
-export default Dialogs;
