@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {v1} from "uuid";
-import state from './redux/state';
+import rootState from './redux/state';
 
+
+let state = rootState
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App dialogs={dialogs}/>
+            <App state={state}/>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')

@@ -1,27 +1,27 @@
 import {v1} from "uuid";
 
-type MessageType = {
+export type MessageType = {
     id: string
     message: string
 }
-type DialogType = {
+export type DialogType = {
     id: string
     name: string
 }
-type PostType = {
+export type PostType = {
     id: string
     message: string
     like: string
     likesCount: string
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-type SidebarType = {}
+export type SidebarType = {}
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -30,7 +30,7 @@ export type RootStateType = {
 }
 
 
-let state: RootStateType = {
+let rootState: RootStateType = {
     profilePage: {
         posts: [
             {id: v1(), message: 'Hi, how are you?', like: 'like', likesCount: '5'},
@@ -54,4 +54,4 @@ let state: RootStateType = {
     },
     sidebar: {}
 }
-export default state
+export default rootState
