@@ -1,25 +1,19 @@
 import React from 'react';
 import style from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostType, ProfilePageType} from "../../../redux/state";
 
-type myPostType = {
-    id: string
-    message: string
-    like: string
-    likesCount: string
+type MyPostPropsType = {
+    posts: PostType[]
 }
 
-export const MyPosts = () => {
+export const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
-    let posts = [
-        {id: '1', message: 'Hi, how are you?', like: 'like', likesCount: '5'},
-        {id: '2', message: "It's my first post", like: 'like', likesCount: '12'}
-    ]
-
-    let postElement = posts.map(post => <Post key={post.id}
-                                          message={post.message}
-                                          like={post.like}
-                                          likesCount={post.likesCount}/>)
+    let postElement = props.posts.map(post => <Post key={post.id}
+                                                    id={post.id}
+                                                    message={post.message}
+                                                    like={post.like}
+                                                    likesCount={post.likesCount}/>)
 
     return (
         <div className={style.postsBlock}>
@@ -37,7 +31,7 @@ export const MyPosts = () => {
             </div>
             <div className={style.posts}>
 
-                { postElement }
+                {postElement}
 
                 {/*<Post message={post[0].message}*/}
                 {/*      like={post[0].like}*/}

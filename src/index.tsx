@@ -4,15 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import rootState from './redux/state';
 
 
-let state = rootState
+//let dialogState = rootState.dialogsPage
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App state={state}/>
+            <App />
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
@@ -22,3 +21,5 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
