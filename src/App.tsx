@@ -8,7 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import state, {addPostCallback, onChangeCallback, RootStateType} from "./redux/state";
+import state, {addMessage, addPost, updateNewMessageText, updateNewPostText} from "./redux/state";
 
 
 const App = () => {
@@ -19,13 +19,17 @@ const App = () => {
             <NavBar/>
             <div className='appWrapperContent'>
                 <Routes>
-                    <Route path='dialogs/*' element={<Dialogs state={state.dialogsPage}/>}/>
+                    <Route path='dialogs/*' element={<Dialogs
+                        newMessageText={state.dialogsPage.newMessageText}
+                        dialogsPage={state.dialogsPage}
+                        updateNewMessageText={updateNewMessageText}
+                        addMessage={addMessage}/>}/>
 
                     <Route path='/profile' element={<Profile
-                        state={state.profilePage}
-                        message={state.profilePage.messageForNewPost}
-                        addPostCallback={addPostCallback}
-                        onChangeCallback={onChangeCallback}
+                        profilePage={state.profilePage}
+                        newPostText={state.profilePage.newPostText}
+                        addPost={addPost}
+                        updateNewPostText={updateNewPostText}
                     />}/>
 
                     <Route path='/music' element={<Music/>}/>

@@ -16,10 +16,11 @@ export type PostType = {
     likesCount: string
 }
 export type ProfilePageType = {
-    messageForNewPost: string
+    newPostText: string
     posts: Array<PostType>
 }
 export type DialogsPageType = {
+    newMessageText: string
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
@@ -34,7 +35,7 @@ export type RootStateType = {
 
 let state: RootStateType = {
     profilePage: {
-        messageForNewPost: '',
+        newPostText: '',
         posts: [
             {id: v1(), message: 'Hi, how are you?', like: 'like', likesCount: '5'},
             {id: v1(), message: "It's my first post", like: 'like', likesCount: '12'}
@@ -49,6 +50,7 @@ let state: RootStateType = {
             {id: v1(), name: 'Nikolay'},
             {id: v1(), name: 'Victor'}
         ],
+        newMessageText: '',
         messages: [
             {id: v1(), message: 'Hi'},
             {id: v1(), message: 'How is your it-kamasutra?'},
@@ -58,7 +60,7 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export function addPostCallback(postMessage: string) {
+export function addPost(postMessage: string) {
     const newPost: PostType = {
         id: v1(),
         message: postMessage,
@@ -66,11 +68,27 @@ export function addPostCallback(postMessage: string) {
         likesCount: '0'
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
     renderEntireTree(state)
 }
 
-export const onChangeCallback = (newText: string) => {
-    state.profilePage.messageForNewPost = newText
+export const updateNewPostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
+    renderEntireTree(state)
+}
+
+export const addMessage = (textMessage: string) => {
+    const newMessage: MessageType = {
+        id: v1(),
+        message: textMessage
+    }
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.newMessageText = ''
+    renderEntireTree(state)
+}
+
+export const updateNewMessageText = (newMessageText: string) => {
+    state.dialogsPage.newMessageText = newMessageText
     renderEntireTree(state)
 }
 
