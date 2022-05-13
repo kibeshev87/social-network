@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import style from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostType, ProfilePageType} from "../../../redux/state";
+import {addPostCallback, PostType, ProfilePageType} from "../../../redux/state";
 
 type MyPostPropsType = {
     posts: PostType[]
+    message: string
+    addPostCallback: (postMessage: string) => void
+    onChangeCallback: (newText: string) => void
 }
 
 export const MyPosts: React.FC<MyPostPropsType> = (props) => {
@@ -15,6 +18,19 @@ export const MyPosts: React.FC<MyPostPropsType> = (props) => {
                                                     like={post.like}
                                                     likesCount={post.likesCount}/>)
 
+
+    // let onClickHandler = () => {
+    //     let text = newPostElement.current.value
+    // }
+    //
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangeCallback(e.currentTarget.value)
+    }
+
+    const onClickHandler = () => {
+        props.addPostCallback(props.message)
+    }
+
     return (
         <div className={style.postsBlock}>
             <h3>
@@ -22,24 +38,16 @@ export const MyPosts: React.FC<MyPostPropsType> = (props) => {
             </h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea value={props.message} onChange={onChangeHandler}/>
                 </div>
                 <div>
-                    <button>Add Post</button>
-                    <button>Remove</button>
+                    <button onClick={onClickHandler}>Add Post</button>
                 </div>
             </div>
             <div className={style.posts}>
 
                 {postElement}
 
-                {/*<Post message={post[0].message}*/}
-                {/*      like={post[0].like}*/}
-                {/*      likesCount={post[0].likesCount}/>*/}
-
-                {/*<Post message={post[1].message}*/}
-                {/*      like={post[1].like}*/}
-                {/*      likesCount={post[1].likesCount}/>*/}
             </div>
         </div>
     )

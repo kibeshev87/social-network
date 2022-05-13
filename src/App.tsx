@@ -8,19 +8,10 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {RootStateType} from "./redux/state";
-import rootState from './redux/state';
-
-
-//
-// type AppPropsType = {
-//     dialogState: DialogsPageType
-// }
+import state, {addPostCallback, onChangeCallback, RootStateType} from "./redux/state";
 
 
 const App = () => {
-
-    let state: RootStateType = rootState
 
     return (
         <div className='appWrapper'>
@@ -29,7 +20,14 @@ const App = () => {
             <div className='appWrapperContent'>
                 <Routes>
                     <Route path='dialogs/*' element={<Dialogs state={state.dialogsPage}/>}/>
-                    <Route path='/profile' element={<Profile state={state.profilePage}/>}/>
+
+                    <Route path='/profile' element={<Profile
+                        state={state.profilePage}
+                        message={state.profilePage.messageForNewPost}
+                        addPostCallback={addPostCallback}
+                        onChangeCallback={onChangeCallback}
+                    />}/>
+
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/settings' element={<Settings/>}/>
