@@ -8,28 +8,35 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import state, {addMessage, addPost, updateNewMessageText, updateNewPostText} from "./redux/state";
+import store, {StoreType} from "./redux/state";
 
+// type AppPropsType = {
+//     store: StoreType
+// }
 
-const App = () => {
+function App () {
+
+    const state = store.getState()
 
     return (
+
         <div className='appWrapper'>
             <Header/>
             <NavBar/>
             <div className='appWrapperContent'>
                 <Routes>
                     <Route path='dialogs/*' element={<Dialogs
-                        newMessageText={state.dialogsPage.newMessageText}
                         dialogsPage={state.dialogsPage}
-                        updateNewMessageText={updateNewMessageText}
-                        addMessage={addMessage}/>}/>
+                        newMessageText={state.dialogsPage.newMessageText}
+                        addMessage={store.addMessage.bind(store)}
+                        updateNewMessageText={store.updateNewMessageText.bind(store)}
+                    />}/>
 
                     <Route path='/profile' element={<Profile
                         profilePage={state.profilePage}
                         newPostText={state.profilePage.newPostText}
-                        addPost={addPost}
-                        updateNewPostText={updateNewPostText}
+                        addPost={store.addPost.bind(store)}
+                        updateNewPostText={store.updateNewPostText.bind(store)}
                     />}/>
 
                     <Route path='/music' element={<Music/>}/>
