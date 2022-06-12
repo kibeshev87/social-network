@@ -43,26 +43,38 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = AddPostActionType
-    | UpdateNewPostTextType
-    | AddMessageActionType
-    | UpdateNewMessageTextType
+export type ActionType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateNewMessageTextAC>
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage: string
+
+export const addPostAC = (postText: string) => {
+    return {
+        type: 'ADD-POST',
+        postText: postText
+    } as const
 }
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    textMessage: string
+
+export const updateNewPostTextAC = (newPostText: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newPostText: newPostText
+    } as const
 }
-type UpdateNewPostTextType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newPostText: string
+
+export const addMessageAC = (textMessage: string) => {
+    return {
+        type: 'ADD-MESSAGE',
+        textMessage: textMessage
+    } as const
 }
-type UpdateNewMessageTextType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newMessageText: string
+
+export const updateNewMessageTextAC = (newMessageText: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newMessageText: newMessageText
+    } as const
 }
 
 let store: StoreType = {
@@ -103,22 +115,23 @@ let store: StoreType = {
         this._callSubscriber = observer
     },
 
-    // addPost(postMessage: string) {
-    //     const newPost: PostType = {
-    //         id: v1(),
-    //         message: postMessage,
-    //         like: 'like',
-    //         likesCount: '0'
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._callSubscriber()
-    // },
-    // updateNewPostText(newPostText: string) {
-    //     this._state.profilePage.newPostText = newPostText
-    //     this._callSubscriber()
-    // },
-    /* addMessage(textMessage: string) {
+
+    /* _addPost(postMessage: string) {
+         const newPost: PostType = {
+             id: v1(),
+             message: postMessage,
+             like: 'like',
+             likesCount: '0'
+         }
+         this._state.profilePage.posts.push(newPost)
+         this._state.profilePage.newPostText = ''
+         this._callSubscriber()
+     },
+     _updateNewPostText(newPostText: string) {
+         this._state.profilePage.newPostText = newPostText
+         this._callSubscriber()
+     },
+     addMessage(textMessage: string) {
          const newMessage: MessageType = {
              id: v1(),
              message: textMessage
@@ -130,13 +143,12 @@ let store: StoreType = {
      updateNewMessageText(newMessageText: string) {
          this._state.dialogsPage.newMessageText = newMessageText
          this._callSubscriber()
-     },
- */
+     },*/
     dispatch(action: ActionType) {
         if (action.type === 'ADD-POST') {
             let newPost: PostType = {
                 id: v1(),
-                message: action.postMessage,
+                message: action.postText,
                 like: 'like',
                 likesCount: '0'
             }
