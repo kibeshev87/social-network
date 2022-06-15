@@ -14,7 +14,7 @@ import {store} from "./redux/reduxStore";
 //     store: StoreType
 // }
 
-function App () {
+function AppWithRedux () {
 
     const state = store.getState()
 
@@ -50,4 +50,4 @@ function App () {
     )
 }
 
-export default App
+export default AppWithRedux

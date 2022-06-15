@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './../Dialogs.module.css'
 import {Link} from "react-router-dom";
-import {DialogType} from "../../../redux/state";
+import {DialogType} from "../../../redux/dialogsReducer";
 
 type DialogPropsType = DialogType
      //id: string

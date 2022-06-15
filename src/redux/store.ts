@@ -1,13 +1,9 @@
+/*
 import {v1} from "uuid";
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
 
-export type MessageType = {
-    id: string
-    message: string
-}
-export type DialogType = {
-    id: string
-    name: string
-}
 export type PostType = {
     id: string
     message: string
@@ -17,6 +13,14 @@ export type PostType = {
 export type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
+}
+export type MessageType = {
+    id: string
+    message: string
+}
+export type DialogType = {
+    id: string
+    name: string
 }
 export type DialogsPageType = {
     newMessageText: string
@@ -116,7 +120,7 @@ let store: StoreType = {
     },
 
 
-    /* _addPost(postMessage: string) {
+    /!* _addPost(postMessage: string) {
          const newPost: PostType = {
              id: v1(),
              message: postMessage,
@@ -143,39 +147,46 @@ let store: StoreType = {
      updateNewMessageText(newMessageText: string) {
          this._state.dialogsPage.newMessageText = newMessageText
          this._callSubscriber()
-     },*/
+     },*!/
     dispatch(action: ActionType) {
-        if (action.type === 'ADD-POST') {
-            let newPost: PostType = {
-                id: v1(),
-                message: action.postText,
-                like: 'like',
-                likesCount: '0'
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
 
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newPostText
-            this._callSubscriber()
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
+        this._callSubscriber()
 
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: action.textMessage
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber()
+        /!* if (action.type === 'ADD-POST') {
+             let newPost: PostType = {
+                 id: v1(),
+                 message: action.postText,
+                 like: 'like',
+                 likesCount: '0'
+             }
+             this._state.profilePage.posts.push(newPost)
+             this._state.profilePage.newPostText = ''
+             this._callSubscriber()
+
+         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+             this._state.profilePage.newPostText = action.newPostText
+             this._callSubscriber()
 
 
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newMessageText
-            this._callSubscriber()
-        }
+         } else if (action.type === 'ADD-MESSAGE') {
+             const newMessage: MessageType = {
+                 id: v1(),
+                 message: action.textMessage
+             }
+             this._state.dialogsPage.messages.push(newMessage)
+             this._state.dialogsPage.newMessageText = ''
+             this._callSubscriber()
+
+
+         } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+             this._state.dialogsPage.newMessageText = action.newMessageText
+             this._callSubscriber()
+         }*!/
     }
 }
 
-export default store
+export default store*/

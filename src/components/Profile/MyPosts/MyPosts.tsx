@@ -1,13 +1,16 @@
 import React, {ChangeEvent} from 'react';
 import style from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ActionType, addPostAC, PostType, updateNewPostTextAC} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC, ActionType, PostType} from "../../../redux/profileReducer";
+import {useDispatch} from "react-redux";
+
+
 
 type MyPostPropsType = {
     posts: PostType[]
     newPostText: string
-    dispatch: (action: ActionType)=> void
-   // postMessage: string
+    dispatch: (action: ActionType) => void
+    // postMessage: string
     //addPost: (postMessage: string) => void
     //updateNewPostText: (newText: string) => void
 }
@@ -20,6 +23,7 @@ export const MyPosts: React.FC<MyPostPropsType> = (props) => {
                                                     like={post.like}
                                                     likesCount={post.likesCount}/>)
 
+    //const dispatch = useDispatch()
 
     const onClickHandler = () => {
         //props.dispatch({type: "ADD-POST", postText: props.newPostText})

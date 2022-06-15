@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './../Dialogs.module.css'
-import {MessageType} from "../../../redux/state";
+import {MessageType} from "../../../redux/dialogsReducer";
 
 type MessagePropsType = MessageType
     //id: string
