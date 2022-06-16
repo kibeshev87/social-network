@@ -14,9 +14,9 @@ import {store} from "./redux/reduxStore";
 //     store: StoreType
 // }
 
-function App () {
+function App() {
 
-    const state = store.getState()
+    const store = store
 
     return (
 
@@ -33,9 +33,10 @@ function App () {
                     />}/>
 
                     <Route path='/profile' element={<Profile
-                        profilePage={state.profilePage}
-                        newPostText={state.profilePage.newPostText}
-                        dispatch={store.dispatch.bind(store)}
+                        store={store}
+                        // profilePage={state.profilePage}
+                        // newPostText={state.profilePage.newPostText}
+                        // dispatch={store.dispatch.bind(store)}
 
                         // addPost={store.addPost.bind(store)}
                         // updateNewPostText={store.updateNewPostText.bind(store)}

@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {debug} from "util";
 
 export type PostType = {
     id: string
@@ -24,6 +25,8 @@ const initialState: ProfilePageType = {
 }
 
 export const profileReducer = (state = initialState, action: ActionType): ProfilePageType => {
+    debugger
+
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {

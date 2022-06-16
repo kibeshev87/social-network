@@ -9,10 +9,10 @@ import {useDispatch} from "react-redux";
 type MyPostPropsType = {
     posts: PostType[]
     newPostText: string
-    dispatch: (action: ActionType) => void
+    //dispatch: (action: ActionType) => void
     // postMessage: string
-    //addPost: (postMessage: string) => void
-    //updateNewPostText: (newText: string) => void
+    addPost: (postMessage: string) => void
+    updateNewPostText: (event: string) => void
 }
 
 export const MyPosts: React.FC<MyPostPropsType> = (props) => {
@@ -27,15 +27,15 @@ export const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     const onClickHandler = () => {
         //props.dispatch({type: "ADD-POST", postText: props.newPostText})
-        props.dispatch(addPostAC(props.newPostText))
-        //props.addPost(props.newPostText)
+        //props.dispatch(addPostAC(props.newPostText))
+        props.addPost(props.newPostText)
         //props.updateNewPostText('')
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        // props.updateNewPostText(e.currentTarget.value)
+         props.updateNewPostText(e.currentTarget.value)
         //props.dispatch({type: "UPDATE-NEW-POST-TEXT", newPostText: e.currentTarget.value})
-        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
+        //props.dispatch(updateNewPostTextAC(e.currentTarget.value))
     }
 
     return (
