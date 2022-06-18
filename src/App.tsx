@@ -8,15 +8,15 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {store} from "./redux/reduxStore";
+import {RootStateType, store} from "./redux/reduxStore";
+ //
+ // type AppPropsType = {
+ //     store: RootStateType
+ // }
+//let store: RootStateType = store
 
-// type AppPropsType = {
-//     store: StoreType
-// }
+function App(){
 
-function App() {
-
-    const store = store
 
     return (
 
@@ -26,14 +26,14 @@ function App() {
             <div className='appWrapperContent'>
                 <Routes>
                     <Route path='dialogs/*' element={<Dialogs
-                        dialogsPage={state.dialogsPage}
-                        newMessageText={state.dialogsPage.newMessageText}
-                        dispatch={store.dispatch.bind(store)}
-                        //updateNewMessageText={store.updateNewMessageText.bind(store)}
+                        // dialogsPage={state.dialogsPage}
+                        // newMessageText={state.dialogsPage.newMessageText}
+                        // dispatch={store.dispatch.bind(store)}
+                        // //updateNewMessageText={store.updateNewMessageText.bind(store)}
                     />}/>
 
                     <Route path='/profile' element={<Profile
-                        store={store}
+                        //store={store}
                         // profilePage={state.profilePage}
                         // newPostText={state.profilePage.newPostText}
                         // dispatch={store.dispatch.bind(store)}
