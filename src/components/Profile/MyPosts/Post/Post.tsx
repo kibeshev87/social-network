@@ -11,7 +11,7 @@ export const Post: React.FC<PostPropsType> = (props) => {
                 src='https://w7.pngwing.com/pngs/172/696/png-transparent-garfield-odie-cartoon-comics-the-cat-cartoon-thumbnail.png'/>
             {props.message}
             <div>
-                <span id={props.id}> {props.like} {props.likesCount}</span>
+                <span id={props.id}> like {props.likesCount}</span>
             </div>
         </div>
     )

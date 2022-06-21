@@ -17,11 +17,11 @@ type ProfilePropsType = {
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
+    debugger
+
     return (
-        <nav>
             <div>
                 <ProfileInfo/>
-
                 <MyPostsContainer
                     store={store}
                     // posts={props.profilePage.posts}
@@ -31,7 +31,6 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                     //updateNewPostText={props.updateNewPostText}
                 />
             </div>
-        </nav>
     )
 }
 

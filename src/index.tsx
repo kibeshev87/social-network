@@ -1,12 +1,11 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./redux/reduxStore";
+import {store} from "./redux/store";
 import {RootStateType} from "./redux/reduxStore";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import AppWithRedux from "./AppWithRedux";
 
 let rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(

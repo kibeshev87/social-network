@@ -6,7 +6,7 @@ import {sidebarReducer} from "./sidebarReducer";
 export type PostType = {
     id: string
     message: string
-    like: string
+    //like: string
     likesCount: string
 }
 export type ProfilePageType = {
@@ -85,8 +85,8 @@ export let store: StoreType = {
         profilePage: {
             newPostText: '',
             posts: [
-                {id: v1(), message: 'Hi, how are you?', like: 'like', likesCount: '5'},
-                {id: v1(), message: "It's my first post", like: 'like', likesCount: '12'}
+                {id: v1(), message: 'Hi, how are you?',  likesCount: '5'},
+                {id: v1(), message: "It's my first post", likesCount: '12'}
             ]
         },
         dialogsPage: {

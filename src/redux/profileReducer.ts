@@ -4,7 +4,7 @@ import {debug} from "util";
 export type PostType = {
     id: string
     message: string
-    like: string
+    //like: string
     likesCount: string
 }
 export type ProfilePageType = {
@@ -19,20 +19,20 @@ export type ActionType = ReturnType<typeof addPostAC>
 const initialState: ProfilePageType = {
     newPostText: '',
     posts: [
-        {id: v1(), message: 'Hi, how are you?', like: 'like', likesCount: '5'},
-        {id: v1(), message: "It's my first post", like: 'like', likesCount: '12'}
+        {id: v1(), message: 'Hi, how are you?', likesCount: '5'},
+        {id: v1(), message: "It's my first post", likesCount: '12'}
     ]
 }
 
 export const profileReducer = (state = initialState, action: ActionType): ProfilePageType => {
-    debugger
+    //debugger
 
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {
                 id: v1(),
                 message: action.postText,
-                like: 'like',
+                //like: 'like',
                 likesCount: '0'
             }
             state.posts.push(newPost)

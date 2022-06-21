@@ -20,7 +20,7 @@ export const MyPosts: React.FC<MyPostPropsType> = (props) => {
     let postElement = props.posts.map(post => <Post key={post.id}
                                                     id={post.id}
                                                     message={post.message}
-                                                    like={post.like}
+                                                    //like={post.like}
                                                     likesCount={post.likesCount}/>)
 
     //const dispatch = useDispatch()

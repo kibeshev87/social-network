@@ -8,7 +8,8 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {RootStateType, store} from "./redux/reduxStore";
+import {RootStateType, store} from "./redux/store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
  //
  // type AppPropsType = {
  //     store: RootStateType
@@ -25,7 +26,8 @@ function App(){
             <NavBar/>
             <div className='appWrapperContent'>
                 <Routes>
-                    <Route path='dialogs/*' element={<Dialogs
+                    <Route path='dialogs/*' element={<DialogsContainer
+                        store={store}
                         // dialogsPage={state.dialogsPage}
                         // newMessageText={state.dialogsPage.newMessageText}
                         // dispatch={store.dispatch.bind(store)}
