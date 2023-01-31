@@ -1,74 +1,50 @@
 import {v1} from "uuid";
 
-export type MessageType = {
-    id: string
-    message: string
-}
 export type DialogType = {
     id: string
     name: string
 }
+export type MessageType = {
+    id: string
+    message: string
+}
 export type DialogsPageType = {
-    newMessageText: string
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
+    dialogs: DialogType[]
+    messages: MessageType[]
 }
 
 
-export type ActionType = ReturnType<typeof addMessageAC>
-    | ReturnType<typeof updateNewMessageTextAC>
-
+//export type DialogsReducerType = AddMessageACType
 const initialState: DialogsPageType = {
     dialogs: [
-        {id: v1(), name: 'Dmitry'},
-        {id: v1(), name: 'Yulia'},
-        {id: v1(), name: 'Aleksandr'},
-        {id: v1(), name: 'Evgeniy'},
-        {id: v1(), name: 'Nikolay'},
-        {id: v1(), name: 'Victor'}
+        {id: '1', name: 'Dima'},
+        {id: '2', name: 'Julia'},
+        {id: '3', name: 'Timur'}
     ],
-    newMessageText: '',
     messages: [
-        {id: v1(), message: 'Hi'},
-        {id: v1(), message: 'How is your it-kamasutra?'},
-        {id: v1(), message: 'Yo-Yo'}
+        {id: '1', message: 'hello'},
+        {id: '2', message: 'hello'},
+        {id: '3', message: 'hello'},
     ]
 }
 
-export const dialogsReducer = (state = initialState, action: ActionType): DialogsPageType => {
-
+export const dialogsReducer = (state = initialState, action: AddMessageACType): DialogsPageType => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
-            const newMessage: MessageType = {
-                id: v1(),
-                message: action.textMessage
+        case "ADD-MESSAGE": {
+            const newMessage: MessageType = {id: v1(), message: action.payload.message}
+            return {
+                ...state, messages: [newMessage, ...state.messages]
             }
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
-
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newMessageText
-            return state
-
+        }
         default:
             return state
     }
+}
 
-};
-
-export const addMessageAC = (textMessage: string) => {
+export type AddMessageACType = ReturnType<typeof addMessageAC>
+export const addMessageAC = (message: string) => {
     return {
         type: 'ADD-MESSAGE',
-        textMessage: textMessage
+        payload: {message}
     } as const
 }
-
-export const updateNewMessageTextAC = (newMessageText: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newMessageText: newMessageText
-    } as const
-}
-
-

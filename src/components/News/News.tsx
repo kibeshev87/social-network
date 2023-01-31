@@ -1,11 +1,9 @@
 import React from 'react';
 
-const News = () => {
+export const News = () => {
     return (
         <div>
-          News
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhaWPsgmizX-EvyGID96euTY3gIjL6vDTscQ&usqp=CAU'/>
         </div>
     );
 };
-
-export default News;

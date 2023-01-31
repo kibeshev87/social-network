@@ -1,56 +1,38 @@
-import React from 'react'
-import './App.css'
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
-import {Route, Routes} from "react-router-dom";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import News from "./components/News/News";
-import {RootStateType, store} from "./redux/store";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
- //
- // type AppPropsType = {
- //     store: RootStateType
- // }
-//let store: RootStateType = store
+import React from 'react';
+import './App.css';
+import {Header} from "./components/headers/Header";
+import {NavBar} from "./components/navBar/NavBar";
+import {Profile} from "./components/profile/myPosts/Profile";
+import {DialogsPage} from "./components/dialogs/DialogsPage";
+import {BrowserRouter, Route} from "react-router-dom";
+import {News} from "./components/news/News";
+import {Music} from "./components/music/Music";
+import {store} from "./redux/reduxStore";
 
-function App(){
 
+const App = () => {
+
+   let state = store.getState()
 
     return (
+        <BrowserRouter>
+            <div className="App">
+                <Header/>
+                <NavBar/>
+                <div className='appWrapperContent'>
+                    <Route path='/profile'
+                           render={() => <Profile posts={state.profilePage.posts} />}/>
+                    <Route path='/dialogs'
+                           render={() => <DialogsPage dialogs={state.dialogsPage.dialogs}
+                                                      messages={state.dialogsPage.messages}
+                           />}/>
+                    <Route path='/news' component={News}/>
+                    <Route path='/music' component={Music}/>
+                </div>
 
-        <div className='appWrapper'>
-            <Header/>
-            <NavBar/>
-            <div className='appWrapperContent'>
-                <Routes>
-                    <Route path='dialogs/*' element={<DialogsContainer
-                        store={store}
-                        // dialogsPage={state.dialogsPage}
-                        // newMessageText={state.dialogsPage.newMessageText}
-                        // dispatch={store.dispatch.bind(store)}
-                        // //updateNewMessageText={store.updateNewMessageText.bind(store)}
-                    />}/>
-
-                    <Route path='/profile' element={<Profile
-                        //store={store}
-                        // profilePage={state.profilePage}
-                        // newPostText={state.profilePage.newPostText}
-                        // dispatch={store.dispatch.bind(store)}
-
-                        // addPost={store.addPost.bind(store)}
-                        // updateNewPostText={store.updateNewPostText.bind(store)}
-                    />}/>
-
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                </Routes>
             </div>
-        </div>
-    )
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;

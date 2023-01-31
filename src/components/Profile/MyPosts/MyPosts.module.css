@@ -1,7 +1,13 @@
-.postsBlock {
+/*.profile {
+    grid-area: c;
+    background-color: #bfb853;
+}
+.profile img {
+    width: 800px;
+}*/
+.myPostWrapper {
     padding: 10px;
 }
-
 .posts {
     margin-top: 10px;
 }

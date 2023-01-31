@@ -1,16 +1,13 @@
-import {combineReducers, legacy_createStore as createStore } from 'redux'
+import {combineReducers, createStore} from "redux";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
-import {sidebarReducer} from "./sidebarReducer";
+
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    sidebar: sidebarReducer
+    dialogsPage: dialogsReducer
 })
+
 export const store = createStore(rootReducer)
 
-export type RootStateType = ReturnType<typeof rootReducer>
-
-
-
+export type AppRootStateType = ReturnType<typeof rootReducer>

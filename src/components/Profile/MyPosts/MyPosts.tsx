@@ -1,62 +1,52 @@
-import React, {ChangeEvent} from 'react';
+import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
+import {NewPost} from "./post/NewPost";
 import style from './MyPosts.module.css'
-import {Post} from "./Post/Post";
-import {addPostAC, updateNewPostTextAC, ActionType, PostType} from "../../../redux/profileReducer";
+import {addPostAC, PostType} from "../../../redux/profileReducer";
 import {useDispatch} from "react-redux";
-
-
 
 type MyPostPropsType = {
     posts: PostType[]
-    newPostText: string
-    //dispatch: (action: ActionType) => void
-    // postMessage: string
-    addPost: (postMessage: string) => void
-    updateNewPostText: (event: string) => void
 }
 
-export const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
-    let postElement = props.posts.map(post => <Post key={post.id}
-                                                    id={post.id}
-                                                    message={post.message}
-                                                    //like={post.like}
-                                                    likesCount={post.likesCount}/>)
+export const MyPosts = (props: MyPostPropsType) => {
 
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    const onClickHandler = () => {
-        //props.dispatch({type: "ADD-POST", postText: props.newPostText})
-        //props.dispatch(addPostAC(props.newPostText))
-        props.addPost(props.newPostText)
-        //props.updateNewPostText('')
+    const [message, setMessage] = useState('')
+
+    const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setMessage(event.currentTarget.value)
     }
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-         props.updateNewPostText(e.currentTarget.value)
-        //props.dispatch({type: "UPDATE-NEW-POST-TEXT", newPostText: e.currentTarget.value})
-        //props.dispatch(updateNewPostTextAC(e.currentTarget.value))
+    const onClickHandler = () => addPost()
+
+    const addPost = () => {
+        debugger
+        if (message.trim() !== '') {
+            dispatch(addPostAC(message))
+            setMessage('')
+        }
+    }
+
+    const onKeyPressHandler = (event: KeyboardEvent<HTMLButtonElement>) => {
+        if(event.key === 'Enter')
+            addPost()
     }
 
     return (
-        <div className={style.postsBlock}>
-            <h3>
-                My posts
-            </h3>
+        <div className={style.myPostWrapper}>
+            <h3>My posts</h3>
             <div>
-                <div>
-                    <input value={props.newPostText} onChange={onChangeHandler}/>
-                </div>
-                <div>
-                    <button onClick={onClickHandler}>Add Post</button>
-                </div>
+                <textarea placeholder={'New Message'} value={message} onChange={onChangeHandler} autoFocus/>
+            </div>
+            <div>
+                <button onClick={onClickHandler} onKeyPress={onKeyPressHandler} >Add post</button>
             </div>
             <div className={style.posts}>
-
-                {postElement}
-
+                {props.posts.map(el => <NewPost key={el.id} message={el.message} like={el.like}/>)}
             </div>
         </div>
-    )
-}
+    );
+};
 
