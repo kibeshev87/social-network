@@ -24,9 +24,9 @@ export type ProfileReducerType = AddPostACType
 export const profileReducer = (state = initialState, action: ProfileReducerType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST": {
-            let newPost: PostType = {id: v1(), message: action.payload.message, like: 0}
+            let newPost: PostType = {id: v1(), message: action.message, like: 0}
             return {
-                ...state, posts: [newPost, ...state.posts]
+                ...state, posts: [...state.posts, newPost]
             }
         }
         default:
@@ -35,11 +35,6 @@ export const profileReducer = (state = initialState, action: ProfileReducerType)
 };
 
 export type AddPostACType = ReturnType<typeof addPostAC>
-export const addPostAC = (message: string) => {
-    return {
-        type: 'ADD-POST',
-        payload: {
-            message
-        }
-    } as const
-}
+
+export const addPostAC = (message: string) =>
+    ({type: 'ADD-POST', message} as const)

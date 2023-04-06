@@ -13,8 +13,6 @@ export type DialogsPageType = {
     messages: MessageType[]
 }
 
-
-//export type DialogsReducerType = AddMessageACType
 const initialState: DialogsPageType = {
     dialogs: [
         {id: '1', name: 'Dima'},
@@ -31,9 +29,9 @@ const initialState: DialogsPageType = {
 export const dialogsReducer = (state = initialState, action: AddMessageACType): DialogsPageType => {
     switch (action.type) {
         case "ADD-MESSAGE": {
-            const newMessage: MessageType = {id: v1(), message: action.payload.message}
+            const newMessage: MessageType = {id: v1(), message: action.message}
             return {
-                ...state, messages: [newMessage, ...state.messages]
+                ...state, messages: [...state.messages, newMessage]
             }
         }
         default:
@@ -42,9 +40,6 @@ export const dialogsReducer = (state = initialState, action: AddMessageACType): 
 }
 
 export type AddMessageACType = ReturnType<typeof addMessageAC>
-export const addMessageAC = (message: string) => {
-    return {
-        type: 'ADD-MESSAGE',
-        payload: {message}
-    } as const
-}
+
+export const addMessageAC = (message: string) =>
+    ({type: 'ADD-MESSAGE', message} as const)

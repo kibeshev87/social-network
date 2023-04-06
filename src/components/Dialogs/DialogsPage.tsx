@@ -2,18 +2,17 @@ import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
 import style from './Dialogs.module.css'
 import {Message} from "./Message";
 import {DialogItem} from "./DialogItem";
-import {addMessageAC, DialogType, MessageType} from "../../redux/dialogsReducer";
-import {useDispatch} from "react-redux";
+import {DialogType, MessageType} from "../../redux/dialogsReducer";
 
 type DialogsPagePropsType = {
     dialogs: DialogType[]
     messages: MessageType[]
+    callback: (message: string) => void
 }
 
 
 export const DialogsPage = (props: DialogsPagePropsType) => {
 
-    const dispatch = useDispatch()
 
     const [message, setMessage] = useState('')
 
@@ -23,7 +22,7 @@ export const DialogsPage = (props: DialogsPagePropsType) => {
 
     const addMessage = () => {
         if (message.trim() !== '') {
-            dispatch(addMessageAC(message))
+            props.callback(message)
             setMessage('')
         }
     }

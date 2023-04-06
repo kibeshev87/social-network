@@ -1,17 +1,19 @@
 import React from 'react';
-import {MyPosts} from "./MyPosts";
 import {AvaAndImg} from "../profileInfo/AvaAndImg";
-import {PostType, ProfileReducerType} from "../../../redux/profileReducer";
+import {PostType} from "../../../redux/profileReducer";
+import {MyPostsContainer} from "./MyPostsContainer";
 
+/*
 type ProfilePropsType = {
     posts: PostType[]
 }
+*/
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = () => {
     return (
         <div>
             <AvaAndImg/>
-            <MyPosts posts={props.posts} />
+            <MyPostsContainer/>
         </div>
     );
 };

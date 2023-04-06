@@ -1,17 +1,16 @@
 import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
 import {NewPost} from "./post/NewPost";
 import style from './MyPosts.module.css'
-import {addPostAC, PostType} from "../../../redux/profileReducer";
-import {useDispatch} from "react-redux";
+import {PostType} from "../../../redux/profileReducer";
 
 type MyPostPropsType = {
     posts: PostType[]
+    callback: (message: string) => void
 }
 
 
 export const MyPosts = (props: MyPostPropsType) => {
 
-    const dispatch = useDispatch()
 
     const [message, setMessage] = useState('')
 
@@ -22,9 +21,8 @@ export const MyPosts = (props: MyPostPropsType) => {
     const onClickHandler = () => addPost()
 
     const addPost = () => {
-        debugger
         if (message.trim() !== '') {
-            dispatch(addPostAC(message))
+            props.callback(message)
             setMessage('')
         }
     }
