@@ -1,27 +1,27 @@
 import React from 'react';
 import './App.css';
-import {Header} from "components/headers/Header";
 import {NavBar} from "components/navBar/NavBar";
-import {Profile} from "components/profile/myPosts/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "components/news/News";
 import {Music} from "components/music/Music";
 import {DialogsPageContainer} from "components/dialogs/DialogsPageContainer";
-import {UsersContainer} from "components/users/UsersContainer";
+import UsersContainer from "components/users/UsersContainer";
+import ProfileContainer from "components/profile/myPosts/ProfileContainer";
+import HeaderContainer from "components/headers/HeaderContainer";
 
 
 const App = () => {
 
-    /*let state = store.getState()*/
+    //60 lesson finish
 
     return (
         <BrowserRouter>
             <div className="App">
-                <Header/>
+                <HeaderContainer/>
                 <NavBar/>
                 <div className='appWrapperContent'>
-                    <Route path='/profile'
-                           render={() => <Profile/>}/>
+                    <Route path='/profile/:userId?'
+                           render={() => <ProfileContainer/>}/>
 
                     <Route path='/dialogs'
                            render={() => <DialogsPageContainer/>}/>

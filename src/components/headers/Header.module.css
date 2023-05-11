@@ -3,6 +3,18 @@
     background-color: #5dbf65;
 
 }
+
 .header img {
     width: 80px;
+}
+
+.loginBlock {
+    float: right;
+    margin: 18px;
+
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
 }

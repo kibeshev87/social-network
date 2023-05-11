@@ -1,0 +1,23 @@
+.usersContainer {
+}
+
+.listUsers {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    /*margin-bottom: 10px;*/
+}
+
+.avatarka {
+    margin: 0 10px 10px 0;
+    width: 60px;
+    border-radius: 20px;
+}
+
+.pageNumbers {
+    cursor: pointer;
+}
+
+.activePage {
+    font-weight: bold;
+}

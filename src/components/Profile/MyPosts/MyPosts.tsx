@@ -1,11 +1,11 @@
-import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {NewPost} from "./post/NewPost";
 import style from './MyPosts.module.css'
-import {PostType} from "../../../redux/profileReducer";
+import {PostType} from "redux/profileReducer";
 
 type MyPostPropsType = {
     posts: PostType[]
-    callback: (message: string) => void
+    addPostAC: (message: string) => void
 }
 
 
@@ -22,7 +22,7 @@ export const MyPosts = (props: MyPostPropsType) => {
 
     const addPost = () => {
         if (message.trim() !== '') {
-            props.callback(message)
+            props.addPostAC(message)
             setMessage('')
         }
     }
